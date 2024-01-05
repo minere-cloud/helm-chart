@@ -16,7 +16,6 @@ spec:
       containers:
         - name: minecraft-server
           image: {{ .Values.minecraft.image }}
-          command: ["sleep", "3600"]
           ports:
             - containerPort: 25565
               name: minecraft
