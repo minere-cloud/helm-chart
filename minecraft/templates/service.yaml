@@ -1,7 +1,7 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: {{ .Release.Name }}
+  name: {{ .Release.Name }}-minecraft
 spec:
   selector:
     app: {{ .Release.Name }}
@@ -9,3 +9,16 @@ spec:
   ports:
     - name: minecraft
       port: 80
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ .Release.Name }}-editor
+spec:
+  selector:
+    app: 
+  type:  ClusterIP 
+  ports:
+  - name: {{ .Release.Name }}
+    port: 3000
+    targetPort: 3000 

@@ -1,3 +1,8 @@
-template: paper
-version: 1.20.4
-docker_image: busybox:latest
+minecraft:
+  template: paper
+  version: 1.20.4
+  image: busybox:latest
+
+editor:
+  token: ''
+  image: gitpod/openvscode-server

@@ -14,20 +14,35 @@ spec:
         app: {{ .Release.Name }}
     spec:
       containers:
-      - name: minecraft-server
-        image: {{ .Values.docker_image }}
-        command: ["sleep", "3600"]
-        ports:
-        - containerPort: 25565
-          name: minecraft
-        volumeMounts:
-        - name: data
-          mountPath: /home/minecraft
+        - name: minecraft-server
+          image: {{ .Values.minecraft.image }}
+          command: ["sleep", "3600"]
+          ports:
+            - containerPort: 25565
+              name: minecraft
+          volumeMounts:
+            - name: data
+              mountPath: /home/minecraft
+        - name: editor
+          image: {{ .Values.editor.image }}
+          command:
+            [
+              "/bin/sh",
+              "-c",
+              "exec ${OPENVSCODE_SERVER_ROOT}/bin/openvscode-server --host 0.0.0.0 --connection-token {{ .Values.editor.token }} ${@}",
+              "--",
+            ]
+          ports:
+            - containerPort: 3000
+              name: http
+          volumeMounts:        
+            - name: data
+              mountPath: /home/workspace
   volumeClaimTemplates:
-  - metadata:
-      name: data
-    spec:
-      accessModes: [ "ReadWriteOnce" ]
-      resources:
-        requests:
-          storage: 1Gi
+    - metadata:
+        name: data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 1Gi
