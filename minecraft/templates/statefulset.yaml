@@ -22,7 +22,7 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /home/minere
-              subPath: /home/minere/minecraft
+              subPath: minecraft
         - name: editor
           image: {{ .Values.editor.image }}
           command:
