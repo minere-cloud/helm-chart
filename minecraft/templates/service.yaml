@@ -16,7 +16,7 @@ metadata:
   name: {{ .Release.Name }}-editor
 spec:
   selector:
-    app: 
+    app: {{ .Release.Name }}
   type:  ClusterIP 
   ports:
   - name: {{ .Release.Name }}
