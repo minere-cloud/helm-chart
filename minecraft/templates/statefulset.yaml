@@ -16,7 +16,7 @@ spec:
       containers:
         - name: minecraft-server
           image: {{ .Values.minecraft.image }}
-           env:
+          env:
           {{- range .Values.myArray }}
             - name: {{ .name }}
               value: {{ .value | quote }}
