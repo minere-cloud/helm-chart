@@ -28,21 +28,21 @@ spec:
             - name: data
               mountPath: /home/minere/minecraft
               subPath: minecraft
-        - name: editor
-          image: {{ .Values.editor.image }}
-          command:
-            [
-              "/bin/sh",
-              "-c",
-              "exec ${OPENVSCODE_SERVER_ROOT}/bin/openvscode-server --host 0.0.0.0 --connection-token {{ .Values.editor.token }} ${@}",
-              "--",
-            ]
-          ports:
-            - containerPort: 3000
-              name: http
-          volumeMounts:        
-            - name: data
-              mountPath: /home/workspace
+        #- name: editor
+        #  image: {{ .Values.editor.image }}
+        #  command:
+        #    [
+        #      "/bin/sh",
+        #      "-c",
+        #      "exec ${OPENVSCODE_SERVER_ROOT}/bin/openvscode-server --host 0.0.0.0 --connection-token {{ .Values.editor.token }} ${@}",
+        #      "--",
+        #    ]
+        #  ports:
+        #    - containerPort: 3000
+        #      name: http
+        #  volumeMounts:        
+        #    - name: data
+        #      mountPath: /home/workspace
   volumeClaimTemplates:
     - metadata:
         name: data
