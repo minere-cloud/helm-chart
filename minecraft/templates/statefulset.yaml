@@ -16,6 +16,11 @@ spec:
       containers:
         - name: minecraft-server
           image: {{ .Values.minecraft.image }}
+           env:
+          {{- range .Values.myArray }}
+            - name: {{ .name }}
+              value: {{ .value | quote }}
+          {{- end }}
           ports:
             - containerPort: 25565
               name: minecraft
