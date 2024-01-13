@@ -17,7 +17,7 @@ spec:
         - name: minecraft-server
           image: {{ .Values.minecraft.image }}
           env:
-          {{- range .Values.myArray }}
+          {{- range .Values.minecraft.env }}
             - name: {{ .name }}
               value: {{ .value | quote }}
           {{- end }}
