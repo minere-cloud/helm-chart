@@ -16,8 +16,6 @@ spec:
       containers:
         - name: minecraft-server
           image: {{ .Values.minecraft.image }}
-          tty: true
-          stdin: true
           env:
           {{- range .Values.minecraft.env }}
             - name: {{ .name }}
